@@ -10,7 +10,7 @@ pipeline {
     }
   }
   post {
-    alwasy {
+    always {
       cleanWs()
     }
   }
