@@ -7,6 +7,7 @@ pipeline{
     stages{
         stage("Build Maven"){
             steps{
+		 sh "mvn -version"
                 checkout([$class: 'GitSCM', branches: [[name: '*/dev']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/tamizh1991/dockerdemo.git']]])
                 sh "mvn clean install"
             }
