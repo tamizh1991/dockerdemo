@@ -1,20 +1,22 @@
-pipeline {
-  agent any
-  
-  tools {
-  	maven "3.20"
-  }
-  stages {
-    stage("Build") {
-      steps {
-        sh "mvn -version"
-        sh "mvn clean install:
-      }
+pipeline{
+    agent any
+    tools {
+        maven "maven_3.8.6"
     }
-  }
-  post {
-    always {
-      cleanWs()
+    stages{
+        stage("Build Maven"){
+            steps{
+                checkout([$class: 'GitSCM', branches: [[name: '*/dev']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/tamizh1991/dockerdemo.git']]])
+                sh "mvn clean install"
+            }
+            
+        }
+        stage("Build Docker Image"){
+            steps{
+                script{
+					sh "docker build -t tamizh2sss/docker-demo ."
+				}
+            }
+        }
     }
-  }
 }
