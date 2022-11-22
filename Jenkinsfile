@@ -1,7 +1,8 @@
 pipeline{
     agent any
     tools {
-        maven "maven_3.8.6"
+	java "JDK-17"
+        maven "maven_3.8.6"	
     }
     stages{
         stage("Build Maven"){
@@ -14,8 +15,8 @@ pipeline{
         stage("Build Docker Image"){
             steps{
                 script{
-					sh "docker build -t tamizh2sss/docker-demo ."
-				}
+			sh "docker build -t tamizh2sss/docker-demo ."
+		}
             }
         }
     }
