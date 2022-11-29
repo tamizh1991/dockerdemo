@@ -1,7 +1,13 @@
 pipeline{
-    agent any
-    tools {	
-        maven "maven_3.8.6"	
+    environment {
+        JAVA_TOOL_OPTIONS = "-Duser.home=/var/maven"
+    }
+    agent {
+        docker {
+            image "maven:3.8.0-jdk-17"
+            label "docker"
+            args "-v /tmp/maven:/var/maven/.m2 -e MAVEN_CONFIG=/var/maven/.m2"
+        }
     }
     stages{
         stage("Build Maven"){
@@ -20,4 +26,10 @@ pipeline{
             }
         }
     }
+post{
+	always{
+		cleanWs()		
+	}
+	
+	}
 }
