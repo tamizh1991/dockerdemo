@@ -16,7 +16,16 @@ pipeline{
             steps{
                 script{
 			sh "docker build -t tamizh2sss/docker-demo ."
+			
 		}
+		stage("Push Docker Image"){
+            steps{
+                script{
+				sh "docker image push tamizh2sss/docker-demo:latest"
+			
+		}
+		
+		
             }
         }
     }
