@@ -22,7 +22,7 @@ pipeline {
         stage('Push Docker Image') {
                 steps {
                     script {
-                        sh 'docker image push tamizh2sss/docker-demo:latest'
+                        sh 'docker image push tamizh2sss/docker-demo:2.8.$BUILD_NUMBER '
                     }
                 }
         }
