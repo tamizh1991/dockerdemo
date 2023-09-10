@@ -15,7 +15,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh 'docker build -t tamizh2sss/docker-demo .'
+                    sh 'docker build -t tamizh2sss/docker-demo:2.8.$BUILD_NUMBER .'
                 }
             }
         }
