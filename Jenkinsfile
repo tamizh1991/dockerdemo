@@ -19,6 +19,13 @@ pipeline {
                 }
             }
         }
+         stage('Docker Login') {
+            steps {
+                script {
+                    sh 'echo $github_username_PSW | docker login -u $github_username_USR --password-stdin'
+                }
+            }
+        }        
         stage('Push Docker Image') {
                 steps {
                     script {
