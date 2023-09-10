@@ -22,7 +22,7 @@ pipeline {
          stage('Docker Login') {
             steps {
                 script {
-                    sh 'docker login -u $github_username_USR $github_username_PSW '
+                    sh 'docker login -u $github_username_USR -p $github_username_PSW '
                 }
             }
         }        
